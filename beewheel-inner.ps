@@ -1,0 +1,325 @@
+%!PS
+
+% We only cover 245 days of the year - 360/245 = 1.47, so make this a 'degree'
+
+/degrees {-1.47 mul} def
+
+%setup font
+/Palatino-Roman findfont
+6 scalefont
+setfont
+
+% Move to new position
+298 370 translate
+
+
+%edge border circle
+0 0 210 0 360 arc
+closepath
+stroke
+
+
+% Draw a tick, rotate 1 'degree'
+/maketick {
+/Palatino-Roman findfont
+8 scalefont
+setfont
+    0 200 moveto		%move out 250y from centre
+    0 10  rlineto		%draw (relative) 25 points
+    closepath			%'finish' the shape
+    stroke
+
+    1 degrees rotate
+%    -1.47 rotate
+%    /inc inc 1 add def		%increment inc by 1 for each tick
+} def
+
+% Call maketick 245 times (1 tick per day
+%/inc 0 def
+1 1 245 {
+maketick
+} for
+
+% undo rounding error in multiple rotations by restting graphics positions etc
+/resetcoords {
+initgraphics
+298 370 translate
+} def
+
+% Draw a long line (mark section changes)
+/longline {
+0 170 moveto
+0 30 rlineto
+closepath
+stroke
+} def
+
+% Draw a long line (mark gender changes)
+/extralongline {
+    0 0 moveto
+    0 200 rlineto
+} def
+
+% Draw a dashed short line (as shortline)
+/dashshortline {
+    0 0 moveto
+    0 170 moveto
+    0 8 rlineto closepath stroke
+    0 188 moveto
+    0 8 rlineto closepath stroke
+    0 220 moveto
+} def
+
+
+% Draw a dashed short line (as longline)
+/dashlongline {
+    0 0 moveto
+    0 10 rlineto closepath stroke
+    0 20 moveto
+    0 10 rlineto closepath stroke
+    0 40 moveto
+    0 10 rlineto closepath stroke
+    0 60 moveto
+    0 10 rlineto closepath stroke
+    0 80 moveto
+    0 10 rlineto closepath stroke
+    0 100 moveto
+    0 10 rlineto closepath stroke
+    0 120 moveto
+    0 10 rlineto closepath stroke
+    0 140 moveto
+    0 10 rlineto closepath stroke
+    0 160 moveto
+    0 10 rlineto closepath stroke
+    0 180 moveto
+    0 10 rlineto closepath stroke
+    0 200 moveto
+    0 10 rlineto closepath stroke
+    0 220 moveto
+} def
+
+
+
+resetcoords
+
+%BEGIN QUEEN
+
+extralongline
+longline
+
+% 3 days egg
+2 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Egg) show
+grestore
+1 degrees rotate
+longline
+
+% 5 days larva
+2.5 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Larva) show
+grestore
+2.5 degrees rotate
+longline
+
+% 8 days capped
+4 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Capped) show
+grestore
+4 degrees rotate
+longline
+
+% 7 days mating
+3.5 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Hatched) show
+grestore
+3.5 degrees rotate
+dashshortline
+% New entry
+gsave
+10 degrees rotate
+0 170 moveto
+90 rotate
+(Mating) show
+grestore
+21 degrees rotate
+dashshortline
+
+
+% 7 days laying
+gsave
+10 degrees rotate
+0 170 moveto
+90 rotate
+(Laying) show
+grestore
+10 degrees rotate
+
+
+%%% END QUEEN
+
+28 degrees rotate
+
+%BEGIN DRONE
+
+extralongline
+longline
+
+% 3 days egg
+2 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Eggs) show
+grestore
+1 degrees rotate
+longline
+
+% 7 days larva
+4 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Larvae) show
+grestore
+3 degrees rotate
+longline
+
+% 14 days capped
+7 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Capped) show
+grestore
+7 degrees rotate
+longline
+
+% 14 days feeding
+7 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Feeding) show
+grestore
+7 degrees rotate
+longline
+
+% Mating
+10 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Mating) show
+grestore
+10 degrees rotate
+% life expectancy around 90 days
+
+%%% END DRONE
+
+28 degrees rotate
+
+%BEGIN WORKER
+
+extralongline
+longline
+
+% 3 days egg
+2 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Eggs) show
+grestore
+1 degrees rotate
+longline
+
+% 5 days larva
+3 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Larvae) show
+grestore
+3 degrees rotate
+longline
+
+% 12 days capped
+6 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Capped) show
+grestore
+6 degrees rotate
+longline
+
+% 21 days in hive
+10.5 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Hive) show
+grestore
+10.5 degrees rotate
+dashshortline
+
+% 21+ days flying
+13 degrees rotate
+gsave
+0 170 moveto
+90 rotate
+(Field) show
+grestore
+gsave
+10 degrees rotate
+0 75 moveto
+90 rotate
+(Average lifespan) show
+grestore
+13 degrees rotate
+dashlongline
+
+
+%%% END WORKER
+
+
+%%Labels
+
+/Palatino-Roman findfont
+14 scalefont
+setfont
+
+
+resetcoords
+
+%%0 0 130 0 360 arc closepath stroke
+
+38 105 moveto
+-29 rotate
+(Queen) show
+
+
+resetcoords
+
+80 -70 moveto
+-140 rotate
+(Drone) show
+
+resetcoords
+-110 -20 moveto
+-270 rotate
+(Worker) show
+
+showpage

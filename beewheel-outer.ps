@@ -1,0 +1,168 @@
+%!PS
+
+%setup font
+/Palatino-Roman findfont
+9 scalefont
+setfont
+
+
+%copyright information
+298 40 moveto
+(2008 Copyright Matthew Richardson : matt@woodwose.net) dup stringwidth pop 2 div neg 0 rmoveto show
+298 30 moveto
+(Distributed under Creative Commons Licence: Attribution-Non-Commercial-Share Alike 2.5 UK: Scotland.) dup stringwidth pop 2 div neg 0 rmoveto show
+298 20 moveto
+(You are free to use this document for any non-commercial purpose.) dup stringwidth pop 2 div neg 0 rmoveto show
+closepath
+stroke
+
+% Move to new position
+298 370 translate
+
+%centre dot
+0 0 5 0 360 arc
+closepath
+fill
+
+
+%Explanatory Text
+gsave
+0 380 moveto
+%setup font
+/Palatino-Bold findfont
+24 scalefont
+setfont
+(Bee Life-Cycle Ready Reckoner) dup stringwidth pop 2 div neg 0 rmoveto show
+
+%setup font
+/Palatino-Roman findfont
+12 scalefont
+setfont
+0 110 moveto
+(Print off and cut out the two wheels.) dup stringwidth pop 2 div neg 0 rmoveto show
+0 90 moveto
+(Pin the smaller wheel over this larger one.) dup stringwidth pop 2 div neg 0 rmoveto show
+0 70 moveto
+(Rotate to line up the start of a cycle with a date.) dup stringwidth pop 2 div neg 0 rmoveto show
+
+0 50 moveto
+(Read off the dates for future lifecycle events.) dup stringwidth pop 2 div neg 0 rmoveto show
+
+0 -50 moveto
+(Solid lines are fixed periods, dashed lines represent average periods.) dup stringwidth pop 2 div neg 0 rmoveto show
+
+0 -70 moveto
+(Dates lie on the dashes, not the spaces.) dup stringwidth pop 2 div neg 0 rmoveto show
+
+
+grestore
+
+/Palatino-Roman findfont
+6 scalefont
+setfont
+
+
+%edge border circle
+0 0 270 0 360 arc
+closepath
+stroke
+
+/monthstart {
+    /inc inc 1 add def		%increment inc by 1 for each tick
+    0 230 moveto
+    0 40 rlineto
+    closepath
+    stroke
+
+    /Palatino-Bold findfont
+    14 scalefont
+    setfont
+
+    70 240 moveto
+    -23 rotate
+    month (            ) cvs  show
+    23 rotate
+    
+} def
+
+%starting at 1, increment by 1, 245 times:
+/maketick {
+    /Palatino-Roman findfont
+11 scalefont
+setfont
+    0 210 moveto		%move out 250y from centre
+    0 25  rlineto		%draw (relative) 25 points
+    closepath			%'finish' the shape
+    stroke
+
+    % Print every 3rd day number (day mod 3 has no remainder)
+    inc 3 mod 0 eq  {
+    0 236 moveto		%move to position for text
+%write inc's value centred at that point
+    inc (    ) cvs  dup stringwidth pop 2 div neg 0 rmoveto show
+    
+    }if
+
+    -1.47 rotate
+    /inc inc 1 add def		%increment inc by 1 for each tick
+} def
+
+
+/inc 0 def
+/month (March) def
+monthstart
+1 1 31 {
+    maketick
+} for
+
+/inc 0 def
+/month (April) def
+monthstart
+1 1 30 {
+    maketick
+} for
+
+/inc 0 def
+/month (May) def
+monthstart
+1 1 31 {
+maketick
+} for
+
+/inc 0 def
+/month (June) def
+monthstart
+1 1 30 {
+    maketick
+} for
+
+/inc 0 def
+/month (July) def
+monthstart
+1 1 31 {
+maketick
+} for
+
+/inc 0 def
+/month (August) def
+monthstart
+1 1 31 {
+maketick
+} for
+
+/inc 0 def
+/month (September) def
+monthstart
+1 1 30 {
+    maketick
+} for
+
+/inc 0 def
+/month (October) def
+monthstart
+1 1 31 {
+    maketick
+} for
+
+
+showpage
